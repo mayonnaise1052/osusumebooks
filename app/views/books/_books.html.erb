@@ -18,9 +18,12 @@
               </tr>
             </tbody>
           </table>
+          <div class='btn-toolbar' role="toolbar">
+          <%= render 'favorites/favorite_button', book: book %>
+          <div>
           <div>
             <% if current_user == book.user %>
-              <%= button_to "Delete", book, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+              <%= button_to "Delete", book, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
             <% end %>
             <br>
           </div>

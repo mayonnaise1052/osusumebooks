@@ -1,0 +1,11 @@
+<% if current_user.favorite?(book) %>
+  <%= form_with(model: current_user.favorites.find_by(like_id: book.id), method: :delete) do |f| %>
+    <%= hidden_field_tag :like_id, book.id %>
+    <%= f.submit 'Unfavorite', class: 'btn btn-warning w-100' %>
+  <% end %>
+<% else %>
+  <%= form_with(model: current_user.favorites.build) do |f| %>
+    <%= hidden_field_tag :like_id, book.id %>
+    <%= f.submit '  Favorite  ', class: 'btn btn-info w-100' %>
+  <% end %>
+<% end %>
