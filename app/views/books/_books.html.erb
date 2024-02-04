@@ -1,0 +1,32 @@
+<% if books.any? %>
+  <ul class="list-unstyled mt-2">
+    <% books.each do |book| %>
+      <li class="d-flex">
+        <div>
+          <div>
+            <%= link_to book.user.name, user_path(book.user), class: "text-decoration-none" %> <span class="text-muted">posted at <%= book.created_at %></span>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Title</th><th>Author</th><th>Publisher</th><th>Memo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= book.title %></td><td><%= book.author %></td><td><%= book.publisher %></td><td><%= book.memo %></td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <% if current_user == book.user %>
+              <%= button_to "Delete", book, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+            <% end %>
+            <br>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <%== pagy_bootstrap_nav(@pagy) %>
+<% end %>
