@@ -1,9 +1,24 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <div class="row">
+    <aside class="col-sm-4">
+      <%= form_with(model: @book) do |f| %>
+        <div class="mb-3">
+          Title： <%= f.text_area :title, class: 'form-control', rows: 1 %>
+          Author： <%= f.text_area :author, class: 'form-control', rows: 1 %>
+          Publisher： <%= f.text_area :publisher, class: 'form-control', rows: 1 %>
+          Memo： <%= f.text_area :memo, class: 'form-control', rows: 2 %>
+        </div>
+        <%= f.submit 'Post', class: 'btn btn-primary w-100' %>
+      <% end %>
+    </aside>
+    <div class="col-sm-8">
+      <%= render 'books/books', books: @books %>
+    </div>
+  </div>
 <% else %>
   <div class="bg-secondary p-3 p-sm-5 my-4 rounded">
     <div class="text-center text-white">
-      <h1>Welcome to the Microposts</h1>
+      <h1>Welcome to the OsusumeBooks</h1>
       <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>

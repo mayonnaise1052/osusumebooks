@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @pagy, @books = pagy(@user.books.order(id: :desc))
+    counts(@user)
   end
 
   def new
