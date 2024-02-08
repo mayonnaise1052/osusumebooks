@@ -29,6 +29,10 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
   
+  def feed_books
+    Book.where(user_id: self.following_ids + [self.id])
+  end
+  
   def favorite(book)
     self.favorites.find_or_create_by(like_id: book.id)
   end
@@ -43,6 +47,6 @@ class User < ApplicationRecord
   end
   
   def favorite_books
-    Micropost.where(book_id: self.like_ids)
+    Book.where(book_id: self.like_ids)
   end
 end

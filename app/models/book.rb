@@ -6,4 +6,6 @@ class Book < ApplicationRecord
   validates :publisher, length: { maximum: 255 }
   validates :memo, length: { maximum: 255 }
   
+  has_many :likes, class_name: 'Favorite', foreign_key: 'like_id', dependent: :destroy
+  
 end

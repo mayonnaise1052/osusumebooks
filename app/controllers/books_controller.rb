@@ -8,7 +8,7 @@ class BooksController < ApplicationController
       flash[:success] = 'メッセージを投稿しました。'
       redirect_to root_url
     else
-      @pagy, @books = pagy(current_user.books.order(id: :desc))
+      @pagy, @books = pagy(current_user.feed_books.order(id: :desc))
       flash.now[:danger] = 'メッセージの投稿に失敗しました。'
       render 'toppages/index'
     end
